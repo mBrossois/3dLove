@@ -37,7 +37,7 @@ fontLoader.load(
 
         // Text
         const textGeometry = new TextGeometry(
-            'Hello Three.js',
+            'I love you Emma',
             {
                 font: font,
                 size: 0.5,
