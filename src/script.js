@@ -56,20 +56,35 @@ fontLoader.load(
         scene.add(text)
 
         // Donuts
-        const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 32, 64)
+
+        const x = 0, y = 0;
+
+        const heartShape = new THREE.Shape();
+
+        heartShape.moveTo( x + 5, y + 5 );
+        heartShape.bezierCurveTo( x + 5, y + 5, x + 4, y, x, y );
+        heartShape.bezierCurveTo( x - 6, y, x - 6, y + 7,x - 6, y + 7 );
+        heartShape.bezierCurveTo( x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19 );
+        heartShape.bezierCurveTo( x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7 );
+        heartShape.bezierCurveTo( x + 16, y + 7, x + 16, y, x + 10, y );
+        heartShape.bezierCurveTo( x + 7, y, x + 5, y + 5, x + 5, y + 5 );
+
+        const geometry = new THREE.ShapeGeometry( heartShape );
+        material.side = THREE.DoubleSide
 
         for(let i = 0; i < 100; i++)
         {
-            const donut = new THREE.Mesh(donutGeometry, material)
-            donut.position.x = (Math.random() - 0.5) * 10
-            donut.position.y = (Math.random() - 0.5) * 10
-            donut.position.z = (Math.random() - 0.5) * 10
-            donut.rotation.x = Math.random() * Math.PI
-            donut.rotation.y = Math.random() * Math.PI
-            const scale = Math.random()
-            donut.scale.set(scale, scale, scale)
+            const heart = new THREE.Mesh( geometry, material ) ;
+            
+            heart.position.x = (Math.random() - 0.5) * 15
+            heart.position.y = (Math.random() - 0.5) * 15
+            heart.position.z = (Math.random() - 0.5) * 15
+            heart.rotation.x = Math.random() * Math.PI
+            heart.rotation.y = Math.random() * Math.PI
+            const scale = 0.1 * Math.random()
+            heart.scale.set(scale, scale, scale)
 
-            scene.add(donut)
+            scene.add( heart );
         }
     }
 )
